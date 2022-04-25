@@ -6,6 +6,7 @@ let computerPlay = () => {
 //Create a function that plays a round of RPS and picks a winner by taking two inputs, player input(case-insensitive) and computer selection and returns a string
 // Create rules within function, ie. Rock beats Scissors, Paper beats Rock, Scissors beats Paper
 //Create function game that plays 5 rounds of RPS keeping score and declaring an overall winner at the end
+//I defined oneRound function into the game function so that it could receive game's local scope
 let game = ()=>{
     let round = 0;
     let playerScore = 0;
@@ -55,9 +56,9 @@ let game = ()=>{
         }
         console.log(oneRound(prompt("Type Rock, Paper, or Scissors"),computerPlay()));    
         if(round === 5 && playerScore > computerScore){
-            return `You are the overall winner having won ${playerScore} rounds.`
+            return `You are the overall winner having won ${playerScore} rounds.`       
         }
-        else if(round === 5 && computerScore < playerScore){
+        else if(round === 5 && computerScore > playerScore){
             return `The computer is the overall winner having won ${computerScore} rounds.`
         }
         else if(round === 5 && computerScore === playerScore){
