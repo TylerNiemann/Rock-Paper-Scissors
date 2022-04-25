@@ -23,7 +23,7 @@ let oneRound = (playerSelection,computerSelection) =>{
         else if (computerSelection === "scissors"){
             return "It's a tie. Both picked Scissors.";
         }
-        else return "You win. Scissors beats Rock."
+        else return "You win. Scissors beats Paper."
     }
     else if (playerPick === "paper"){
         if (computerSelection === "rock"){
@@ -34,9 +34,9 @@ let oneRound = (playerSelection,computerSelection) =>{
         }
         else return "It's a tie. Both picked Paper.";
     }
-    else return "Invalid player input";
+    else return "Invalid player input. Please input Rock, Paper, or Scissors.";
 }
 //Define paramaters for the one round function
-const playerSelection = "rock";
+const playerSelection = prompt("Type Rock, Paper, or Scissors");
 const computerSelection = computerPlay();
 console.log(oneRound(playerSelection,computerSelection));
