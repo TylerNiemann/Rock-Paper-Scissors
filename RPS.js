@@ -1,14 +1,32 @@
+let playerTally = 0;
+let computerTally = 0;
 let computerPlay = () => {
     const rpsArray = ["rock", "paper", "scissors"];
     return rpsArray[Math.floor(Math.random()*rpsArray.length)];
 }
+function disableButtons() {
+    btn.forEach(elem => {
+        elem.disabled = true
+    })
+}
+
+function playerWon(){
+    disableButtons();
+    return roundResults.textContent = (`You won! ${playerTally} to ${computerTally}`);
+}
+
+function playerLost(){
+    disableButtons();
+    return roundResults.textContent = (`You lost! ${computerTally} to ${playerTally}`);
+}
+
 function playerScore(){
-    let result = parseInt(document.querySelector('.playerResults').innerHTML);
-    document.querySelector('.playerResults').innerHTML = result + 1;
+    playerTally += 1;
+    document.querySelector('.playerResults').textContent = `${playerTally}`;
 }
 function computerScore(){
-    let result = parseInt(document.querySelector('.computerResults').innerHTML);
-    document.querySelector('.computerResults').innerHTML = result + 1;
+    computerTally += 1;
+    document.querySelector('.computerResults').textContent = `${computerTally}`;
 }
 
 let oneRound = (playerPick,computerSelection) =>{
@@ -34,13 +52,13 @@ let oneRound = (playerPick,computerSelection) =>{
             return roundResults.textContent = "It's a tie. Both picked Scissors.";
         }
         else {
-            playerScore();
+            playerScore(); 
             return roundResults.textContent = "You win this round. Scissors beats Paper."
         }
             }
     else if (playerPick === "paper"){
         if (computerSelection === "rock"){
-            playerScore();
+            playerScore(); 
             return roundResults.textContent = "You win this round. Paper beats Rock.";
         }
         else if (computerSelection === "scissors"){
@@ -56,8 +74,10 @@ const roundResults = document.createElement('div');
 resultContainer.appendChild(roundResults);
 
 function clickedButton(e){
-    (oneRound(this.value,computerPlay()));
-}
+    (oneRound(this.value,computerPlay()))
+    if (playerTally === 5)playerWon();
+    else if(computerTally === 5)playerLost();
+};
 
 const btn = Array.from(document.querySelectorAll('button'));
 btn.forEach(button => button.addEventListener('click', clickedButton));
