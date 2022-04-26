@@ -12,21 +12,21 @@ function disableButtons() {
 
 function playerWon(){
     disableButtons();
-    return roundResults.textContent = (`You won! ${playerTally} to ${computerTally}`);
+    return roundResults.textContent = ("You won!");
 }
 
 function playerLost(){
     disableButtons();
-    return roundResults.textContent = (`You lost! ${computerTally} to ${playerTally}`);
+    return roundResults.textContent = ("You lost!");
 }
 
 function playerScore(){
     playerTally += 1;
-    document.querySelector('.playerResults').textContent = `${playerTally}`;
+    document.querySelector('.playerResults').textContent = `Player Score: ${playerTally}`;
 }
 function computerScore(){
     computerTally += 1;
-    document.querySelector('.computerResults').textContent = `${computerTally}`;
+    document.querySelector('.computerResults').textContent = `Computer Score: ${computerTally}`;
 }
 
 let oneRound = (playerPick,computerSelection) =>{
