@@ -14,47 +14,49 @@ function computerScore(){
 let oneRound = (playerPick,computerSelection) =>{
     if (playerPick === "rock"){
         if (computerSelection === "rock"){
-        return "It's a tie. Both picked Rock.";
+        return roundResults.textContent = "It's a tie. Both picked Rock.";
         }
         else if (computerSelection === "scissors"){
             playerScore();          
-            return "You win this round. Rock beats Scissors.";
+            return roundResults.textContent = "You win this round. Rock beats Scissors.";
         }
         else {
             computerScore();
-            return "You lose this round. Rock loses to Paper."
+            return roundResults.textContent = "You lose this round. Rock loses to Paper."
         }
     }
     else if (playerPick === "scissors"){
         if (computerSelection === "rock"){
             computerScore();
-            return "You lose this round. Scissors loses to Rock.";
+            return roundResults.textContent = "You lose this round. Scissors loses to Rock.";
         }
         else if (computerSelection === "scissors"){
-            return "It's a tie. Both picked Scissors.";
+            return roundResults.textContent = "It's a tie. Both picked Scissors.";
         }
         else {
             playerScore();
-            return "You win this round. Scissors beats Paper."
+            return roundResults.textContent = "You win this round. Scissors beats Paper."
         }
             }
     else if (playerPick === "paper"){
         if (computerSelection === "rock"){
             playerScore();
-            return "You win this round. Paper beats Rock.";
+            return roundResults.textContent = "You win this round. Paper beats Rock.";
         }
         else if (computerSelection === "scissors"){
             computerScore();
-            return "You lose this round. Paper loses to Scissors.";
+            return roundResults.textContent = "You lose this round. Paper loses to Scissors.";
         }
-        else return "It's a tie. Both picked Paper.";
+        else return roundResults.textContent = "It's a tie. Both picked Paper.";
     }
-    else return "Invalid player input. Please input Rock, Paper, or Scissors.";
 }
 
+const resultContainer = document.querySelector('#round');
+const roundResults = document.createElement('div');
+resultContainer.appendChild(roundResults);
+
 function clickedButton(e){
-    console.log(this)
-    console.log(oneRound(this.value,computerPlay()));
+    (oneRound(this.value,computerPlay()));
 }
 
 const btn = Array.from(document.querySelectorAll('button'));
