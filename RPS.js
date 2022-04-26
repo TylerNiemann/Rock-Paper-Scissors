@@ -1,64 +1,56 @@
+let playerScore = 0;
+let computerScore = 0;
+
 let computerPlay = () => {
     const rpsArray = ["rock", "paper", "scissors"];
     return rpsArray[Math.floor(Math.random()*rpsArray.length)];
 }
-let game = ()=>{
-    let round = 0;
-    let playerScore = 0;
-    let computerScore = 0;
-    for(let i = 0; i < 5; i++){
-        round ++;
-        let oneRound = (playerSelection,computerSelection) =>{
-            const playerPick = playerSelection.toLowerCase();
-            if (playerPick === "rock"){
-                if (computerSelection === "rock"){
-                    return "It's a tie. Both picked Rock.";
-                }
-                else if (computerSelection === "scissors"){
-                    playerScore = playerScore + 1;          
-                    return "You win this round. Rock beats Scissors.";
-                }
-                else {
-                    computerScore = computerScore + 1;
-                    return "You lose this round. Rock loses to Paper."
-                }
-            }
-            else if (playerPick === "scissors"){
-                if (computerSelection === "rock"){
-                    computerScore = computerScore + 1;
-                    return "You lose this round. Scissors loses to Rock.";
-                }
-                else if (computerSelection === "scissors"){
-                    return "It's a tie. Both picked Scissors.";
-                }
-                else {
-                    playerScore = playerScore + 1;
-                    return "You win this round. Scissors beats Paper."
-                }
-            }
-            else if (playerPick === "paper"){
-                if (computerSelection === "rock"){
-                    playerScore = playerScore + 1;
-                    return "You win this round. Paper beats Rock.";
-                }
-                else if (computerSelection === "scissors"){
-                    computerScore = computerScore + 1;
-                    return "You lose this round. Paper loses to Scissors.";
-                }
-                else return "It's a tie. Both picked Paper.";
-            }
-            else return "Invalid player input. Please input Rock, Paper, or Scissors.";
+
+let oneRound = (playerPick,computerSelection) =>{
+    if (playerPick === "rock"){
+        if (computerSelection === "rock"){
+        return "It's a tie. Both picked Rock.";
         }
-        console.log(oneRound(prompt("Type Rock, Paper, or Scissors"),computerPlay()));    
-        if(round === 5 && playerScore > computerScore){
-            return `You are the overall winner having won ${playerScore} rounds.`       
+        else if (computerSelection === "scissors"){
+        playerScore = playerScore + 1;          
+        return "You win this round. Rock beats Scissors.";
         }
-        else if(round === 5 && computerScore > playerScore){
-            return `The computer is the overall winner having won ${computerScore} rounds.`
+        else {
+            computerScore = computerScore + 1;
+            return "You lose this round. Rock loses to Paper."
         }
-        else if(round === 5 && computerScore === playerScore){
-            return `It's a tie with both you and the computer winning ${playerScore} rounds.`
-        }    
     }
+    else if (playerPick === "scissors"){
+        if (computerSelection === "rock"){
+            computerScore = computerScore + 1;
+            return "You lose this round. Scissors loses to Rock.";
+        }
+        else if (computerSelection === "scissors"){
+            return "It's a tie. Both picked Scissors.";
+        }
+        else {
+            playerScore = playerScore + 1;
+            return "You win this round. Scissors beats Paper."
+        }
+            }
+    else if (playerPick === "paper"){
+        if (computerSelection === "rock"){
+            playerScore = playerScore + 1;
+            return "You win this round. Paper beats Rock.";
+        }
+        else if (computerSelection === "scissors"){
+            computerScore = computerScore + 1;
+            return "You lose this round. Paper loses to Scissors.";
+        }
+        else return "It's a tie. Both picked Paper.";
+    }
+    else return "Invalid player input. Please input Rock, Paper, or Scissors.";
 }
-console.log(game());
+
+function clickedButton(e){
+    console.log(this)
+    console.log(oneRound(this.value,computerPlay()));
+}
+
+const btn = Array.from(document.querySelectorAll('button'));
+btn.forEach(button => button.addEventListener('click', clickedButton));
