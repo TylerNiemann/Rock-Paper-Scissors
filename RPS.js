@@ -12,12 +12,12 @@ function disableButtons() {
 
 function playerWon(){
     disableButtons();
-    return roundResults.textContent = ("You won!");
+    return roundResults.textContent = ("You won! Reload to play again.");
 }
 
 function playerLost(){
     disableButtons();
-    return roundResults.textContent = ("You lost!");
+    return roundResults.textContent = ("You lost! Reload to play again.");
 }
 
 function playerScore(){
