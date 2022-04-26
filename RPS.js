@@ -1,9 +1,14 @@
-let playerScore = 0;
-let computerScore = 0;
-
 let computerPlay = () => {
     const rpsArray = ["rock", "paper", "scissors"];
     return rpsArray[Math.floor(Math.random()*rpsArray.length)];
+}
+function playerScore(){
+    let result = parseInt(document.querySelector('.playerResults').innerHTML);
+    document.querySelector('.playerResults').innerHTML = result + 1;
+}
+function computerScore(){
+    let result = parseInt(document.querySelector('.computerResults').innerHTML);
+    document.querySelector('.computerResults').innerHTML = result + 1;
 }
 
 let oneRound = (playerPick,computerSelection) =>{
@@ -12,34 +17,34 @@ let oneRound = (playerPick,computerSelection) =>{
         return "It's a tie. Both picked Rock.";
         }
         else if (computerSelection === "scissors"){
-        playerScore = playerScore + 1;          
-        return "You win this round. Rock beats Scissors.";
+            playerScore();          
+            return "You win this round. Rock beats Scissors.";
         }
         else {
-            computerScore = computerScore + 1;
+            computerScore();
             return "You lose this round. Rock loses to Paper."
         }
     }
     else if (playerPick === "scissors"){
         if (computerSelection === "rock"){
-            computerScore = computerScore + 1;
+            computerScore();
             return "You lose this round. Scissors loses to Rock.";
         }
         else if (computerSelection === "scissors"){
             return "It's a tie. Both picked Scissors.";
         }
         else {
-            playerScore = playerScore + 1;
+            playerScore();
             return "You win this round. Scissors beats Paper."
         }
             }
     else if (playerPick === "paper"){
         if (computerSelection === "rock"){
-            playerScore = playerScore + 1;
+            playerScore();
             return "You win this round. Paper beats Rock.";
         }
         else if (computerSelection === "scissors"){
-            computerScore = computerScore + 1;
+            computerScore();
             return "You lose this round. Paper loses to Scissors.";
         }
         else return "It's a tie. Both picked Paper.";
@@ -54,3 +59,4 @@ function clickedButton(e){
 
 const btn = Array.from(document.querySelectorAll('button'));
 btn.forEach(button => button.addEventListener('click', clickedButton));
+
